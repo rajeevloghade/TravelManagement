@@ -2,6 +2,8 @@ package com.tms.service;
 
 import java.util.List;
 
+import com.tms.entity.Travels;
+
 public interface ITravelsService {
 
 	Travels addTravels(Travels travels);
