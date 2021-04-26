@@ -1,12 +1,19 @@
 package com.tms.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="Travel")
+@Table(name = "Travel")
 public class Travels {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "travelsId_pk")
 	int travelsId;
 	String travelsName;
 	String agentName;

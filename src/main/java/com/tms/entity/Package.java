@@ -1,12 +1,18 @@
 package com.tms.entity;
 
+import java.util.List;
+
 import javax.persistence.*;
+
+import com.tms.entity.Package;
 
 @Entity
 @Table(name = "Package")
 public class Package {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "packageId_pk")
 	int packageId;
 	String packageName;
 	String packageDescription;
@@ -14,13 +20,27 @@ public class Package {
 	double packageCost;
 	String payment;
 
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "packageId_fk", referencedColumnName = "packageId")
+	List<Route> routes;
+
 	public Package() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+
+	public Package(String packageName, String packageDescription, String packageType, double packageCost,
+			String payment, List<Route> routes) {
+		super();
+		this.packageName = packageName;
+		this.packageDescription = packageDescription;
+		this.packageType = packageType;
+		this.packageCost = packageCost;
+		this.payment = payment;
+		this.routes = routes;
 	}
 
 	public Package(int packageId, String packageName, String packageDescription, String packageType, double packageCost,
-			String payment) {
+			String payment, List<Route> routes) {
 		super();
 		this.packageId = packageId;
 		this.packageName = packageName;
@@ -28,16 +48,7 @@ public class Package {
 		this.packageType = packageType;
 		this.packageCost = packageCost;
 		this.payment = payment;
-	}
-
-	public Package(String packageName, String packageDescription, String packageType, double packageCost,
-			String payment) {
-		super();
-		this.packageName = packageName;
-		this.packageDescription = packageDescription;
-		this.packageType = packageType;
-		this.packageCost = packageCost;
-		this.payment = payment;
+		this.routes = routes;
 	}
 
 	public int getPackageId() {
@@ -92,7 +103,7 @@ public class Package {
 	public String toString() {
 		return "Package [packageId=" + packageId + ", packageName=" + packageName + ", packageDescription="
 				+ packageDescription + ", packageType=" + packageType + ", packageCost=" + packageCost + ", payment="
-				+ payment + "]";
+				+ payment + ", routes=" + routes + "]";
 	}
 
 }
