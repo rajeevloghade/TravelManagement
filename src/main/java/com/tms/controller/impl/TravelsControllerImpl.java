@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tms.controller.ITravelsController;
 import com.tms.entity.Booking;
+import com.tms.entity.Route;
 import com.tms.entity.Travels;
 import com.tms.service.IBookingService;
+import com.tms.service.IRouteService;
 import com.tms.service.ITravelsService;
 
 @Controller("TravelsControllerImpl")
@@ -23,6 +25,7 @@ import com.tms.service.ITravelsService;
 public class TravelsControllerImpl implements ITravelsController {
 	private @Autowired ITravelsService travelsService;
 	private @Autowired IBookingService bookingService;
+	private @Autowired IRouteService routeService;
 
 	@PostMapping("addTravels")
 	@Override
@@ -62,27 +65,56 @@ public class TravelsControllerImpl implements ITravelsController {
 		// TODO Auto-generated method stub
 		return bookingService.makeBooking(booking);
 	}
-	
+
 	@DeleteMapping("cancelBooking/{bookingId}")
 	@Override
 	public void cancelBooking(@RequestParam int bookingId) {
 		// TODO Auto-generated method stub
 		bookingService.cancelBooking(bookingId);
-		
+
 	}
-	
+
 	@GetMapping("viewBooking/{bookingId}")
 	@Override
 	public Booking viewBooking(@RequestParam int bookingId) {
 		// TODO Auto-generated method stub
 		return bookingService.viewBooking(bookingId);
 	}
-	
+
 	@GetMapping("viewallbooking")
 	@Override
 	public List<Booking> viewAllBooking() {
-		// TODO Auto-generated method stub
 		return bookingService.viewAllBooking();
+	}
+
+	@PostMapping("addRoute")
+	@Override
+	public Route addRoute(@RequestBody Route route) {
+		return routeService.addRoute(route);
+	}
+
+	@PutMapping("updateRoute")
+	@Override
+	public Route updateRoute(@RequestBody Route route) {
+		return routeService.updateRoute(route);
+	}
+
+	@DeleteMapping("removeRoute/{routeId}")
+	@Override
+	public void removeRoute(@RequestParam int routeId) {
+		routeService.removeRoute(routeId);
+	}
+
+	@GetMapping("searchRoute/{routeId}")
+	@Override
+	public Route searchRoute(@RequestParam int routeId) {
+		return routeService.searchRoute(routeId);
+	}
+
+	@GetMapping("viewRoute")
+	@Override
+	public List<Route> viewRouteList() {
+		return routeService.viewRouteList();
 	}
 
 }
