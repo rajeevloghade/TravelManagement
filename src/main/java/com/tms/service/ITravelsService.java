@@ -10,7 +10,7 @@ public interface ITravelsService {
 
 	Travels updateTravels(Travels travels);
 
-	Travels removeTravels(int travelId);
+	void removeTravels(int travelId);
 
 	Travels searchTravels(int travelId);
 
