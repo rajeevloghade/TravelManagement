@@ -19,18 +19,25 @@ public class Route {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "routeId_pk")
+	@Column(name = "routeid_pk")
 	private int routeId;
+	@Column(name = "routeto")
 	private String routeTo;
+	@Column(name = "routefrom")
 	private String routeFrom;
+	@Column(name = "departuretime")
 	private Date departureTime;
+	@Column(name = "arrivaltime")
 	private Date arrivalTime;
+	@Column(name = "doj")
 	private Date doj;
+	@Column(name = "pickuppoint")
 	private String pickupPoint;
+	@Column(name = "fare")
 	private double fare;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "routeId_fk", referencedColumnName = "routeId")
+	@JoinColumn(name = "routeid_fk", referencedColumnName = "routeid_pk")
 	List<Travels> travels;
 
 	public Route() {

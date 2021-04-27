@@ -19,49 +19,52 @@ public class Booking {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "bookingId_pk")
+	@Column(name = "bookingid_pk")
 	int bookingId;
+	@Column(name = "bookingtype")
 	String bookingType;
+	@Column(name = "description")
 	String description;
+	@Column(name = "bookingtitle")
 	String bookingTitle;
+	@Column(name = "bookingdate")
 	Date bookingDate;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "bookingId_fk", referencedColumnName = "bookingId")
-	List<Package> travelPackages;
+	@JoinColumn(name = "bookingid_fk", referencedColumnName = "bookingid_pk")
+	List<PackagePojo> packagePojos;
 
 	public Booking() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Booking(String bookingType, String description, String bookingTitle, Date bookingDate,
-			List<Package> travelPackages) {
+			List<PackagePojo> packagePojos) {
 		super();
 		this.bookingType = bookingType;
 		this.description = description;
 		this.bookingTitle = bookingTitle;
 		this.bookingDate = bookingDate;
-		this.travelPackages = travelPackages;
+		this.packagePojos = packagePojos;
 	}
 
 	public Booking(int bookingId, String bookingType, String description, String bookingTitle, Date bookingDate,
-			List<Package> travelPackages) {
+			List<PackagePojo> packagePojos) {
 		super();
 		this.bookingId = bookingId;
 		this.bookingType = bookingType;
 		this.description = description;
 		this.bookingTitle = bookingTitle;
 		this.bookingDate = bookingDate;
-		this.travelPackages = travelPackages;
+		this.packagePojos = packagePojos;
 	}
 
-	public List<Package> getTravelPackages() {
-		return travelPackages;
+	public List<PackagePojo> getTravelPackages() {
+		return packagePojos;
 	}
 
-	public void setTravelPackages(List<Package> travelPackages) {
-		this.travelPackages = travelPackages;
+	public void setTravelPackages(List<PackagePojo> packagePojos) {
+		this.packagePojos = packagePojos;
 	}
 
 	public int getBookingId() {
@@ -107,8 +110,8 @@ public class Booking {
 	@Override
 	public String toString() {
 		return "Booking [bookingId=" + bookingId + ", bookingType=" + bookingType + ", description=" + description
-				+ ", bookingTitle=" + bookingTitle + ", bookingDate=" + bookingDate + ", travelPackages="
-				+ travelPackages + "]";
+				+ ", bookingTitle=" + bookingTitle + ", bookingDate=" + bookingDate + ", packagePojos=" + packagePojos
+				+ "]";
 	}
 
 }

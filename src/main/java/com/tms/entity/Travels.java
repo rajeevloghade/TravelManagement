@@ -12,17 +12,20 @@ import javax.persistence.Table;
 public class Travels {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "travelsId_pk")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "travelsid_pk")
 	int travelsId;
+	@Column(name = "travelsname")
 	String travelsName;
+	@Column(name = "agentname")
 	String agentName;
+	@Column(name = "address")
 	String address;
+	@Column(name = "contact")
 	String contact;
 
 	public Travels() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Travels(int travelsId, String travelsName, String agentName, String address, String contact) {

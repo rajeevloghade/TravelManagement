@@ -2,33 +2,44 @@ package com.tms.entity;
 
 import java.util.List;
 
-import javax.persistence.*;
-
-import com.tms.entity.Package;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "Package")
-public class Package {
+@Table(name = "PackagePojo")
+public class PackagePojo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "packageId_pk")
+	@Column(name = "packageid_pk")
 	int packageId;
+	@Column(name = "packagename")
 	String packageName;
+	@Column(name = "packagedescription")
 	String packageDescription;
+	@Column(name = "packagetype")
 	String packageType;
+	@Column(name = "packagecost")
 	double packageCost;
+	@Column(name = "payment")
 	String payment;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "packageId_fk", referencedColumnName = "packageId")
+	@JoinColumn(name = "packageid_fk", referencedColumnName = "packageid_pk")
 	List<Route> routes;
 
-	public Package() {
+	public PackagePojo() {
 		super();
 	}
 
-	public Package(String packageName, String packageDescription, String packageType, double packageCost,
+	public PackagePojo(String packageName, String packageDescription, String packageType, double packageCost,
 			String payment, List<Route> routes) {
 		super();
 		this.packageName = packageName;
@@ -39,8 +50,8 @@ public class Package {
 		this.routes = routes;
 	}
 
-	public Package(int packageId, String packageName, String packageDescription, String packageType, double packageCost,
-			String payment, List<Route> routes) {
+	public PackagePojo(int packageId, String packageName, String packageDescription, String packageType,
+			double packageCost, String payment, List<Route> routes) {
 		super();
 		this.packageId = packageId;
 		this.packageName = packageName;
@@ -48,6 +59,14 @@ public class Package {
 		this.packageType = packageType;
 		this.packageCost = packageCost;
 		this.payment = payment;
+		this.routes = routes;
+	}
+
+	public List<Route> getRoutes() {
+		return routes;
+	}
+
+	public void setRoutes(List<Route> routes) {
 		this.routes = routes;
 	}
 
@@ -101,7 +120,7 @@ public class Package {
 
 	@Override
 	public String toString() {
-		return "Package [packageId=" + packageId + ", packageName=" + packageName + ", packageDescription="
+		return "PackagePojo [packageId=" + packageId + ", packageName=" + packageName + ", packageDescription="
 				+ packageDescription + ", packageType=" + packageType + ", packageCost=" + packageCost + ", payment="
 				+ payment + ", routes=" + routes + "]";
 	}
