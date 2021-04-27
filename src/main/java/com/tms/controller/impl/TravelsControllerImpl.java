@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tms.controller.ITravelsController;
@@ -32,25 +32,23 @@ public class TravelsControllerImpl implements ITravelsController {
 	@Override
 	public Travels addTravels(@RequestBody Travels travels) {
 		return travelsService.addTravels(travels);
-
 	}
 
 	@PutMapping("updateTravels")
 	@Override
 	public Travels updateTravels(@RequestBody Travels travels) {
 		return travelsService.updateTravels(travels);
-
 	}
 
 	@DeleteMapping("removeTravels/{travelId}")
 	@Override
-	public void removeTravels(@RequestParam int travelId) {
+	public void removeTravels(@PathVariable("travelId") int travelId) {
 		travelsService.removeTravels(travelId);
 	}
 
 	@GetMapping("searchTravels/{travelId}")
 	@Override
-	public Travels searchTravels(@RequestParam int travelId) {
+	public Travels searchTravels(@PathVariable("travelId") int travelId) {
 		return travelsService.searchTravels(travelId);
 	}
 
@@ -68,14 +66,14 @@ public class TravelsControllerImpl implements ITravelsController {
 
 	@DeleteMapping("cancelBooking/{bookingId}")
 	@Override
-	public void cancelBooking(@RequestParam int bookingId) {
+	public void cancelBooking(@PathVariable("bookingId") int bookingId) {
 		bookingService.cancelBooking(bookingId);
 
 	}
 
 	@GetMapping("viewBooking/{bookingId}")
 	@Override
-	public Booking viewBooking(@RequestParam int bookingId) {
+	public Booking viewBooking(@PathVariable("bookingId") int bookingId) {
 		return bookingService.viewBooking(bookingId);
 	}
 
@@ -99,13 +97,13 @@ public class TravelsControllerImpl implements ITravelsController {
 
 	@DeleteMapping("removeRoute/{routeId}")
 	@Override
-	public void removeRoute(@RequestParam int routeId) {
+	public void removeRoute(@PathVariable("routeId") int routeId) {
 		routeService.removeRoute(routeId);
 	}
 
 	@GetMapping("searchRoute/{routeId}")
 	@Override
-	public Route searchRoute(@RequestParam int routeId) {
+	public Route searchRoute(@PathVariable("routeId") int routeId) {
 		return routeService.searchRoute(routeId);
 	}
 
